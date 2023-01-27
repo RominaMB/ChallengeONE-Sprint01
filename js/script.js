@@ -1,11 +1,24 @@
 const textArea = document.querySelector(".text-area");
 const message = document.querySelector(".message");
 
+function textValidate(){
+    let writtenText = document.querySelector(".text-area").value;
+    let validator = writtenText.match(/^[a-z]*$/);
+
+    if(!validator || validator === 0) {
+        alert("Only lowercase letters and no accents are allowed")
+        location.reload();
+        return true;
+    }
+}
+
 function btnEncrypt() {
-    const encryptedText = encrypt(textArea.value)
-    message.value = encryptedText
-    textArea.value="";
-    message.style.backgroundImage = "none";
+    if(!textValidate()) {   
+        const encryptedText = encrypt(textArea.value)
+        message.value = encryptedText
+        textArea.value="";
+        message.style.backgroundImage = "none";
+    }
 }
 
 function encrypt(stringEncrypted) {
@@ -39,9 +52,8 @@ function decrypt(stringDecrypted) {
 }
 
 function copy(){
-    var content = document.querySelector(".message");
-    content.select();
-    document.execCommand("copy");
+    message.select();
+    navigator.clipboard.writeText(message.value)
+    message.value = "";
     alert("Copied!");
- 
- }
+}
