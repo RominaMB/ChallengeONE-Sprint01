@@ -31,7 +31,7 @@ main {
 
 .message {
     background: white;
-    background-image: url(/img/Muñeco.png);
+    background-image: url(../img/Muñeco.png);
     background-repeat: no-repeat;
     background-position: center;
     border: none;
